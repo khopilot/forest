@@ -2,6 +2,7 @@
 import { Github, Mail, Twitter } from "lucide-react";
 import Link from "next/link";
 import { Card } from "../components/card";
+import Image from "next/image";
 
 const socials = [
 	{
@@ -28,7 +29,18 @@ export default function ContactPage() {
 	return (
 		<div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
 			<div className="max-w-xl mx-auto">
-				<h1 className="text-4xl font-bold text-zinc-100 mb-8">Contact Us</h1>
+				<div className="flex justify-center mb-8">
+					<div className="relative w-48 h-16">
+						<Image
+							src="/logo/Untitled_design__5_-removebg-preview.png"
+							alt="Crimson Films Logo"
+							fill
+							className="object-contain"
+							priority
+						/>
+					</div>
+				</div>
+				<h1 className="text-4xl font-bold text-zinc-100 mb-8 text-center">Contact Us</h1>
 				<form className="space-y-6">
 					<div>
 						<label htmlFor="name" className="block text-sm font-medium text-zinc-300">
