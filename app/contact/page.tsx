@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Card } from "../components/card";
 import Image from "next/image";
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const services = [
 	{
@@ -74,6 +74,17 @@ export default function ContactPage() {
 		email: '',
 		message: ''
 	});
+	const [particles, setParticles] = useState<Array<{ x: number; y: number }>>([]);
+
+	useEffect(() => {
+		// Initialize particles only on client side
+		setParticles(
+			[...Array(20)].map(() => ({
+				x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+				y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)
+			}))
+		);
+	}, []);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -96,18 +107,18 @@ export default function ContactPage() {
 			
 			{/* Floating particles */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
-				{[...Array(20)].map((_, i) => (
+				{particles.map((particle, i) => (
 					<motion.div
 						key={i}
 						className="absolute w-1 h-1 bg-white/20 rounded-full"
 						animate={{
 							x: [
-								Math.random() * window.innerWidth,
-								Math.random() * window.innerWidth
+								particle.x,
+								Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000)
 							],
 							y: [
-								Math.random() * window.innerHeight,
-								Math.random() * window.innerHeight
+								particle.y,
+								Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)
 							],
 						}}
 						transition={{
