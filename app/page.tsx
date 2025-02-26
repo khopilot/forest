@@ -15,68 +15,6 @@ const navigation = [
   { name: "Merch", href: "/merch" },
 ];
 
-const Particles = ({
-  className = "",
-  quantity = 100,
-  staticity = 50,
-  ease = 200,
-  refresh = false,
-}: {
-  className?: string;
-  quantity?: number;
-  staticity?: number;
-  ease?: number;
-  refresh?: boolean;
-}) => {
-  const [particles, setParticles] = useState<Array<{ x: number; y: number }>>([]);
-  const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
-
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (typeof window !== 'undefined') {
-        setDimensions({
-          width: window.innerWidth,
-          height: window.innerHeight
-        });
-      }
-    };
-
-    updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-
-    return () => window.removeEventListener('resize', updateDimensions);
-  }, []);
-
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: quantity }, () => ({
-        x: Math.random() * dimensions.width,
-        y: Math.random() * dimensions.height,
-      }))
-    );
-  }, [quantity, dimensions, refresh]);
-
-  return (
-    <div className={className}>
-      {particles.map((particle, i) => (
-        <motion.span
-          key={i}
-          className="absolute bg-white opacity-50 rounded-full w-0.5 h-0.5"
-          animate={{
-            x: particle.x,
-            y: particle.y,
-          }}
-          transition={{
-            duration: Math.random() * 100 + ease,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
-
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
@@ -137,11 +75,6 @@ export default function Home() {
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
           className="w-full h-px bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0"
-        />
-
-        <Particles
-          className="absolute inset-0 -z-10 animate-fade-in"
-          quantity={100}
         />
 
         {/* Main Title */}

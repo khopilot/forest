@@ -77,8 +77,7 @@ export const metadata: Metadata = {
         url: "https://vimeo.com/237324792",
         width: 1920,
         height: 1080,
-        type: "video/mp4",
-        alt: "A Cambodian Winter Trilogy Trailer"
+        type: "video/mp4"
       }
     ]
   },
@@ -103,18 +102,6 @@ export const metadata: Metadata = {
         height: 630
       }
     ],
-    app: {
-      name: "Crimsonpolarbear",
-      id: {
-        iphone: "app://crimsonpolarbear",
-        ipad: "app://crimsonpolarbear",
-        googleplay: "app://crimsonpolarbear"
-      },
-      url: {
-        iphone: "https://crimsonpolarbear.com",
-        ipad: "https://crimsonpolarbear.com"
-      }
-    }
   },
   other: {
     "facebook-domain-verification": "your-facebook-domain-verification-code",
